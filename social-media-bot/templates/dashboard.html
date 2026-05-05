@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social media Bot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0f172a;
+            color: white;
+            display: flex;
+        }
+
+        .sidebar{
+            width: 250px;
+            height: 100vh;
+            background: #111827;
+            padding: 30px 20px;
+        }
+
+        .sidebar h2{
+            margin-bottom: 30px;
+            color: #38bdf8;
+        }
+
+        .sidebar ul{
+            list-style: none;
+        }
+
+        .sidebar ul li{
+            padding: 15px ;
+            /* border-bottom: 1px solid #1f2937; */
+            margin-bottom: 10px;
+            border-radius: 8px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .sidebar ul li:hover{
+            background: #1e293b;
+        }
+         
+        .main{
+            flex: 1;
+            padding: 30px;
+        }
+
+        .cards{
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card{
+            flex: 1;
+            background: #1e293b;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: 0.3s;
+            
+        }
+        .card:hover{
+            transform: translatey(-5px);
+        }
+        .card p{
+            margin-top: 5px;
+        }
+
+        .logs p{
+            margin-top: 10px;
+        }
+
+        .buttons{
+            margin-top: 30px;
+        }
+        button{
+            padding: 12px 25px;
+            margin-right: 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: medium;
+        }
+
+        .start{
+            background: #22c55e;
+            color: white;
+        }
+        .stop{
+            background: #ef4444;
+            color: white;
+        }
+
+        .logs{
+            margin-top: 40px;
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Bot Admin</h2>
+        <ul>
+            <li>Dashboard</li>
+            <li>Posts</li>
+            <li>Scheduler</li>
+            <li>Accounts</li>
+            <li>API Settings</li>
+            <li>Logs</li>
+        </ul>
+    </div>
+
+    <div class="main">
+        <h1>Social Media Bot Dashboard</h1>
+       <p>
+        Bot Status:
+        {% if bot_status == "Running" %}
+        <span style="color: #22c55e; font-weight: bold;">
+            {{bot_status}} <i class="fa-solid fa-check"></i>
+        </span>
+        {% else %}
+        <span style="color: #ef4444; font-weight: bold;">
+         </i>{{bot_status}} <i class="fa-solid fa-xmark"></i>
+        </span>
+        {% endif %}
+       </p>
+
+        <div class="cards">
+            <div class="card">
+                <h3>Total Posts</h3>
+                <p>{{total_posts}}</p>
+            </div>
+
+            <div class="card">
+                <h3>Active Users</h3>
+                <p>58</p>
+            </div>
+
+            <div class="card">
+                <h3>Connected Users</h3>
+                <p>5</p>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <a href="/start-bot">
+            <button class="start">Start Bot</button>
+            </a>
+
+            <a href="/stop-bot">
+            <button class="stop">Stop Bot</button>
+            </a>
+        </div>
+
+        <div class="logs">
+            <h3>Recent logs</h3>
+            {% for log in logs %}
+            <p>{{log[0]}}</p>
+            {% endfor %}
+        </div>
+        <div class="logs">
+            <p> <span style="color: #22c55e;">Instagram : Connected <i class="fa-solid fa-check" style="color: #22c55e;"></i></span></p>
+            <p> <span style="color: #22c55e;">Telegram : Connected <i class="fa-solid fa-check" style="color: #22c55e;"></i></span></p>
+            <p> <span style="color: #22c55e;">X-Twitter : Disconnected <i class="fa-solid fa-xmark" style="color: red;"></i></span></p>
+            <p> <span style="color: #22c55e;">Facebook : Connected <i class="fa-solid fa-check" style="color: #22c55e;"></i></span></p>
+
+        </div>
+        <div class="logs">
+            <h3>API & Server Settings</h3>
+            
+            <p>API KEY Status : Active <i class="fa-solid fa-check" style="color: green;"></i></p>
+            <p>Server Status : Running <i class="fa-solid fa-check" style="color: green;"></i></p>
+            <p>Database Status : Connected <i class="fa-solid fa-check" style="color: green;"></i></p>
+            <p>Last Sync : Just now</p>
+        </div>
+    </div>
+</body>
+</html>
