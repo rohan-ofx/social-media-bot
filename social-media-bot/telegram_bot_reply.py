@@ -1,7 +1,11 @@
 import requests
 import time
+import os
+from dotenv import load_dotenv
 
-BOT_TOKEN = "8010407290:AAHPnEWSBjoQCenXpUDjMCqwF5BaaoHPA9M"
+load_dotenv()
+
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 def get_updates():
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/getUpdates"
